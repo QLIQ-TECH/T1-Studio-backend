@@ -186,6 +186,11 @@ const projectCardSchema = new Schema(
       type: Boolean,
       default: true,
     },
+
+    order: {
+      type: Number,
+      default: 9999,
+    },
   },
   {
     _id: true,
