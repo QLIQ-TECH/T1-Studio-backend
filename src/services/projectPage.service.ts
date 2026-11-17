@@ -64,6 +64,14 @@ export const getProjectPageService = async (
   const data = lang ? localizeDocument(raw, lang) : raw;
   const resolvedData = resolveImageUrls(data);
 
+  if (resolvedData?.sections?.projects?.projects) {
+    resolvedData.sections.projects.projects = [
+      ...resolvedData.sections.projects.projects,
+    ].sort(
+      (a: any, b: any) => (a.order ?? 9999) - (b.order ?? 9999),
+    );
+  }
+
   return {
     ...resolvedData,
 
