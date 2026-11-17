@@ -191,6 +191,11 @@ const projectCardSchema = new Schema(
       type: Number,
       default: 9999,
     },
+
+    kitchens: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     _id: true,
