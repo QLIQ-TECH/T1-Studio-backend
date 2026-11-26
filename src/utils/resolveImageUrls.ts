@@ -32,10 +32,11 @@ export const resolveImageUrls = (
   ) {
     return {
       ...data,
+      // Uploaded images keep their CDN URL; direct image URLs have no S3 key.
       url:
         data.key && CLOUDFRONT_URL
           ? `${CLOUDFRONT_URL}/${data.key}`
-          : "",
+          : data.url,
     };
   }
 
