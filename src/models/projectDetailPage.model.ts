@@ -712,6 +712,24 @@ const consultationSectionSchema = new Schema(
    MAIN PROJECT DETAIL PAGE
 ========================================================= */
 
+const narrativeSectionSchema = new Schema({
+  ...sectionSettings,
+  eyebrow: { type: localizedTextSchema, default: () => ({}) },
+  image: { type: imageSchema, default: () => ({}) },
+  heading: { type: localizedTextSchema, default: () => ({}) },
+  description: { type: localizedTextSchema, default: () => ({}) },
+}, { _id: false });
+
+const faqSectionSchema = new Schema({
+  ...sectionSettings,
+  heading: { type: localizedTextSchema, default: () => ({}) },
+  faqs: { type: [new Schema({
+    question: { type: localizedTextSchema, default: () => ({}) },
+    answer: { type: localizedTextSchema, default: () => ({}) },
+    isVisible: { type: Boolean, default: true },
+  })], default: [] },
+}, { _id: false });
+
 const projectDetailPageSchema = new Schema(
   {
     pageName: {
@@ -747,6 +765,8 @@ const projectDetailPageSchema = new Schema(
     },
 
     sections: {
+      approach: { type: narrativeSectionSchema, default: undefined },
+      faq: { type: faqSectionSchema, default: undefined },
       hero: {
         type: heroSectionSchema,
         default: () => ({}),
